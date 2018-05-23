@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.glee.playandroid.MainVm" />
+
+        <import type="com.glee.libbase.util.Action" />
+    </data>
+
+    <com.glee.libbase.x.XConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:checkState="@{vm.viewState}"
+        app:loadingStart="true"
+        tools:context=".MainActivity">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view)->vm.onAction(view.id,Action.CLICK,-1)}" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:actionListener="@{vm}"
+            app:refreshState="@{safeUnbox(vm.refreshState)}"
+            app:srlEnableAutoLoadMore="true">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:actionListener="@{vm}"
+                app:dataSet="@{vm.recyclerData}"
+                app:itemLayout="@{@layout/item_recycler_main}" />
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </com.glee.libbase.x.XConstraintLayout>
+</layout>
