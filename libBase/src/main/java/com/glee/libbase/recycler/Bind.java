@@ -26,7 +26,7 @@ public final class Bind {
         BindingAdapter adapter = (BindingAdapter) recyclerView.getAdapter();
         recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         if (adapter == null) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+//            recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
             adapter = new BindingAdapter();
             adapter.setLayoutId(id);
             if (actionListener != null) {

@@ -3,12 +3,8 @@ package com.glee.libbase.util;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
-import com.glee.libbase.recycler.OnViewActionListener;
-import com.glee.libbase.refresh.State;
 import com.glee.libbase.x.LayoutState;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -30,17 +26,17 @@ import static com.glee.libbase.x.LayoutState.NET_ERROR;
  */
 public class BaseViewModel extends AndroidViewModel {
 
-    public BaseViewModel(@NonNull Application application) {
+    BaseViewModel(@NonNull Application application) {
         super(application);
     }
 
 
 
     /**************************** 网络请求部分 *****************************/
-    protected Api getNet() {
-
-        return Net.getApi();
-    }
+//    protected Api getNet() {
+//
+//        return Net.getApi();
+//    }
 
     private CompositeDisposable compositeDisposable;
 

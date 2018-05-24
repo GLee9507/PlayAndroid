@@ -5,6 +5,7 @@ import android.util.Log
 import com.glee.libbase.bean.ArticleBean
 import com.glee.libbase.recycler.ObservableArrayListProxy
 import com.glee.libbase.util.BaseVmWithRefresh
+import com.glee.libbase.util.Net
 
 /**
  * Created with Android Studio.
@@ -38,7 +39,7 @@ class MainVm constructor(app: Application) : BaseVmWithRefresh(app) {
 //            }
 
 
-    private var pageNum = 3
+    private var pageNum = 0
 
     val recyclerData by lazy {
         ObservableArrayListProxy<ArticleBean.DatasBean>(BR.data)
@@ -76,22 +77,26 @@ class MainVm constructor(app: Application) : BaseVmWithRefresh(app) {
     }
 
     private fun du() {
-        net.getMainList(getUrl())
+        Net.getApi().getMainList(getUrl())
                 .doOnDispose {
                     Log.d("glee9507", "duan le ")
                 }
                 .io2main()
                 .with(this)
                 .subscribe(
-                        start = { Log.d("glee9507", "kaishi") },
+                        start = {
+
+                        },
                         success = {
                             recyclerData.addAll(it.data.datas)
                             showContent()
-                            finishLoadMore(true)
-                            finishRefresh(true)
                         },
                         error = {
                             showError()
+                        },
+                        finish = {
+                            finishLoadMore(true)
+                            finishRefresh(true)
                         })
     }
 

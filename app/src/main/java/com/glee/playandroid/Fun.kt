@@ -68,15 +68,19 @@ fun <T> Observable<T>.io2main(): Observable<T> {
             .observeOn(AndroidSchedulers.mainThread())
 }
 
-fun <T> Observable<T>.subscribe(start: () -> Unit, success: (T) -> Unit, error: (Throwable) -> Unit) {
-    doOnSubscribe {
-        start.invoke()
-    }.subscribe(success, error)
+fun <T> Observable<T>.subscribe(start: (() -> Unit) = {}, success: (T) -> Unit, error: (Throwable) -> Unit, finish: () -> Unit = {}) {
+    doOnSubscribe { start.invoke() }
+            .doFinally(finish)
+            .subscribe(success, error)
 }
 
-fun <T> Observable<T>.subscribe(success: (T) -> Unit, error: (Throwable) -> Unit) {
-    subscribe(success, error)
-}
+//fun <T> Observable<T>.subscribe(success: (T) -> Unit, error: (Throwable) -> Unit) {
+//    subscribe(success, error)
+//}
+
+//fun <T> Observable<T>.subscribe(start: () -> Unit, success: (T) -> Unit, error: (Throwable) -> Unit) {
+//    subscribe(success, error)
+//}
 
 
 /**
