@@ -1,5 +1,7 @@
 package com.glee.libbase.recycler;
 
+import android.databinding.Observable;
+import android.databinding.ObservableInt;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

@@ -1,9 +1,12 @@
 package com.glee.libbase.util;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.glee.libbase.recycler.OnViewActionListener;
 import com.glee.libbase.refresh.State;
@@ -16,7 +19,7 @@ import com.glee.libbase.refresh.State;
  * Date: 2018-05-23
  * Time: 4:44 PM
  */
-public class BaseVmWithRefresh extends BaseViewModel implements OnViewActionListener{
+public class BaseVmWithRefresh extends BaseViewModel implements OnViewActionListener {
     public BaseVmWithRefresh(@NonNull Application application) {
         super(application);
     }
